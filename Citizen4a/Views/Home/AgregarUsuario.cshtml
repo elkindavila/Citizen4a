@@ -1,0 +1,31 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>AgregarUsuario</title>
+</head>
+<body>
+    <form method="post" action="@Url.Action("AgregarUsuario","Home")">
+        <Table>
+            <tbody>
+                
+                <tr>
+                    <td>Nombre Usuario</td>
+                    <td><input type="text" name="user"/></td>
+                </tr>
+                <tr>
+                    <td>Password</td>
+                    <td><input type="text" name="pass" /></td>
+                </tr>
+            </tbody>
+        </Table>
+        <input type="submit"/>
+    </form>
+</body>
+</html>
