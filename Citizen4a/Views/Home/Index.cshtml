@@ -1,4 +1,4 @@
-﻿
+﻿@model  IEnumerable<Citizen4a.Models.Users>
 @{
     Layout = null;
 }
@@ -15,19 +15,30 @@
     <table>
         <thead>
             <tr>
-               
+
                 <th>Nombre del usuario</th>
                 <th>Password</th>
+                <th>Accion</th>
                 <th>Accion</th>
             </tr>
         </thead>
         <tbody>
+            @foreach (var usuario in Model)
+            {
             <tr>
+                <td>@usuario.LoginUsers</td>
+                <td>@usuario.PassUsers</td>
+                <td><a href="~/Home/ModificarUsuario/@usuario.IdUsers">Modificar</a></td>
+                <td><a href="~/Home/EliminarUsuario/@usuario.IdUsers">Eliminar</a></td>
+            </tr>
+        }
+
+            @*<tr>
                 <td>edavila</td>
                 <td>234</td>
                 <td><a href="#">Ver</a></td>
-            </tr>
-        </tbody>
-    </table>
+            </tr>*@
+            </tbody>
+        </table>
 </body>
 </html>

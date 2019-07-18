@@ -12,7 +12,7 @@ namespace Citizen4a.Controllers
         UserAdmin useradmin = new UserAdmin();
         public IActionResult Index()
         {
-            return View();
+            return View(useradmin.GetUsers());
         }
         public IActionResult AgregarUsuario()
         {
@@ -28,8 +28,53 @@ namespace Citizen4a.Controllers
                 PassUsers =pass
             };
 
-            useradmin.AgregarUsuario(U);
-            return View();
+            try
+            {
+                useradmin.AgregarUsuario(U);
+            }
+            catch (Exception ex)
+            {
+
+                ViewBag.MensajeError = ex.Message;
+                return View();
+            }
+
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult EliminarUsuario(int id)
+        {
+            useradmin.EliminarUsuario(id);
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult ModificarUsuario(int id)
+        {
+
+            return View(useradmin.GetUsuarioById(id));
+        }
+
+        [HttpPost]
+        public IActionResult ModificarUsuario(int id,string user, string pass)
+        {
+            Users U = new Users()
+            {
+                LoginUsers = user,
+                PassUsers = pass
+            };
+
+            try
+            {
+                useradmin.ModificarUsuario(U,id);
+            }
+            catch (Exception ex)
+            {
+
+                ViewBag.MensajeError = ex.Message;
+                return View(useradmin.GetUsuarioById(id));
+            }
+
+            return RedirectToAction("Index");
         }
     }
 }

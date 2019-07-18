@@ -1,4 +1,4 @@
-﻿
+﻿@model Citizen4a.Models.Users
 @{
     Layout = null;
 }
@@ -8,32 +8,33 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>AgregarUsuario</title>
+    <title>ModificarUsuario</title>
 </head>
 <body>
-    @{ 
-        if (ViewBag.MensajeError!=null)
+    @{
+        if (ViewBag.MensajeError != null)
         {
             <label>@ViewBag.MensajeError</label>
         }
 
     }
 
-    <form method="post" action="@Url.Action("AgregarUsuario","Home")">
+    <form method="post" action="@Url.Action("ModificarUsuario","Home", new { idusuario = Model.IdUsers })">
         <Table>
             <tbody>
-                
+
                 <tr>
                     <td>Nombre Usuario</td>
-                    <td><input type="text" name="user"/></td>
+                    <td><input type="text" name="user" value="@Model.LoginUsers"/></td>
                 </tr>
                 <tr>
                     <td>Password</td>
-                    <td><input type="text" name="pass" /></td>
+                    <td><input type="text" name="pass" value="@Model.PassUsers"/></td>
                 </tr>
             </tbody>
         </Table>
-        <input type="submit"/>
+        <input type="submit" />
     </form>
+
 </body>
 </html>
